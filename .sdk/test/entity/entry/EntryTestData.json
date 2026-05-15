@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "entry": {
+      "ENTRY00": {
+        "meaning": [],
+        "origin": "s29",
+        "phonetic": "s2a",
+        "word": "s2b",
+        "language": "LANGUAGE01"
+      },
+      "ENTRY01": {
+        "meaning": [],
+        "origin": "s51",
+        "phonetic": "s52",
+        "word": "s53",
+        "language": "LANGUAGE01"
+      },
+      "ENTRY02": {
+        "meaning": [],
+        "origin": "s79",
+        "phonetic": "s7a",
+        "word": "s7b",
+        "language": "LANGUAGE01"
+      }
+    }
+  },
+  "new": {
+    "entry": {
+      "entry_ref01": {
+        "meaning": [],
+        "origin": "sa1",
+        "phonetic": "sa2",
+        "word": "sa3"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// FreeDictionary SDK base feature
+
+class FreeDictionaryBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(FreeDictionaryContext $ctx, array $options): void {}
+    public function PostConstruct(FreeDictionaryContext $ctx): void {}
+    public function PostConstructEntity(FreeDictionaryContext $ctx): void {}
+    public function SetData(FreeDictionaryContext $ctx): void {}
+    public function GetData(FreeDictionaryContext $ctx): void {}
+    public function GetMatch(FreeDictionaryContext $ctx): void {}
+    public function SetMatch(FreeDictionaryContext $ctx): void {}
+    public function PrePoint(FreeDictionaryContext $ctx): void {}
+    public function PreSpec(FreeDictionaryContext $ctx): void {}
+    public function PreRequest(FreeDictionaryContext $ctx): void {}
+    public function PreResponse(FreeDictionaryContext $ctx): void {}
+    public function PreResult(FreeDictionaryContext $ctx): void {}
+    public function PreDone(FreeDictionaryContext $ctx): void {}
+    public function PreUnexpected(FreeDictionaryContext $ctx): void {}
+}

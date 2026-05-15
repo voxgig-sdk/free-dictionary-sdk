@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// FreeDictionary SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+FreeDictionaryUtility::setRegistrar(function (FreeDictionaryUtility $u): void {
+    $u->clean = [FreeDictionaryClean::class, 'call'];
+    $u->done = [FreeDictionaryDone::class, 'call'];
+    $u->make_error = [FreeDictionaryMakeError::class, 'call'];
+    $u->feature_add = [FreeDictionaryFeatureAdd::class, 'call'];
+    $u->feature_hook = [FreeDictionaryFeatureHook::class, 'call'];
+    $u->feature_init = [FreeDictionaryFeatureInit::class, 'call'];
+    $u->fetcher = [FreeDictionaryFetcher::class, 'call'];
+    $u->make_fetch_def = [FreeDictionaryMakeFetchDef::class, 'call'];
+    $u->make_context = [FreeDictionaryMakeContext::class, 'call'];
+    $u->make_options = [FreeDictionaryMakeOptions::class, 'call'];
+    $u->make_request = [FreeDictionaryMakeRequest::class, 'call'];
+    $u->make_response = [FreeDictionaryMakeResponse::class, 'call'];
+    $u->make_result = [FreeDictionaryMakeResult::class, 'call'];
+    $u->make_point = [FreeDictionaryMakePoint::class, 'call'];
+    $u->make_spec = [FreeDictionaryMakeSpec::class, 'call'];
+    $u->make_url = [FreeDictionaryMakeUrl::class, 'call'];
+    $u->param = [FreeDictionaryParam::class, 'call'];
+    $u->prepare_auth = [FreeDictionaryPrepareAuth::class, 'call'];
+    $u->prepare_body = [FreeDictionaryPrepareBody::class, 'call'];
+    $u->prepare_headers = [FreeDictionaryPrepareHeaders::class, 'call'];
+    $u->prepare_method = [FreeDictionaryPrepareMethod::class, 'call'];
+    $u->prepare_params = [FreeDictionaryPrepareParams::class, 'call'];
+    $u->prepare_path = [FreeDictionaryPreparePath::class, 'call'];
+    $u->prepare_query = [FreeDictionaryPrepareQuery::class, 'call'];
+    $u->result_basic = [FreeDictionaryResultBasic::class, 'call'];
+    $u->result_body = [FreeDictionaryResultBody::class, 'call'];
+    $u->result_headers = [FreeDictionaryResultHeaders::class, 'call'];
+    $u->transform_request = [FreeDictionaryTransformRequest::class, 'call'];
+    $u->transform_response = [FreeDictionaryTransformResponse::class, 'call'];
+});

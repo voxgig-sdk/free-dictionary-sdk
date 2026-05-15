@@ -1,0 +1,88 @@
+# Entity: entry
+
+main: kit: entity: entry: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "meaning"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "origin"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "phonetic"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "word"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "entry"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "en"
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "hello"
+                kind: "param"
+                name: "word"
+                orig: "word"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/entries/{language}/{word}"
+          parts: [
+            "entries"
+            "{language}"
+            "{word}"
+          ]
+          select: {
+            exist: [
+              "language"
+              "word"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "entry"
+      ]
+    ]
+  }
+
+
+
+}

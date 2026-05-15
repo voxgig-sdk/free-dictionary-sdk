@@ -1,0 +1,27 @@
+# BasicEntryFlow
+
+main: kit: flow: BasicEntryFlow:
+{
+  entity: "entry",
+  kind: "basic",
+  name: "BasicEntryFlow",
+  step: [
+    {
+      match: {
+        language: "language01",
+        word: "word01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "entry_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEntryFlow"
+}

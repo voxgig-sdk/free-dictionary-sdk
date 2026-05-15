@@ -1,0 +1,26 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://dictionaryapi.dev/"
+      }
+      description: "This API allows users to access word definitions, phonetics, and usage examples by sending a request with a specific English word. It serves as a resource for developers building applications that require linguistic data, enhancing learning and communication tools."
+      license: {
+        name: "Free to use"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.dictionaryapi.dev/api/v2"
+        }
+      ]
+      title: "Free Dictionary API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}

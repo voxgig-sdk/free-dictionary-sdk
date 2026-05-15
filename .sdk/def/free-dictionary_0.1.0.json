@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Free Dictionary API",
+    "description": "This API allows users to access word definitions, phonetics, and usage examples by sending a request with a specific English word. It serves as a resource for developers building applications that require linguistic data, enhancing learning and communication tools.",
+    "version": "2.0.0",
+    "contact": {
+      "url": "https://dictionaryapi.dev/"
+    },
+    "license": {
+      "name": "Free to use"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.dictionaryapi.dev/api/v2",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/entries/{language}/{word}": {
+      "get": {
+        "summary": "Get word definitions",
+        "description": "Retrieve definitions, phonetics, meanings, and usage examples for a specific word in the specified language.",
+        "operationId": "getWordDefinition",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "Language code (e.g., 'en' for English)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "en"
+            }
+          },
+          {
+            "name": "word",
+            "in": "path",
+            "description": "The word to look up",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "hello"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with word definitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WordEntry"
+                  }
+                },
+                "example": [
+                  {
+                    "word": "hello",
+                    "phonetic": "həˈləʊ",
+                    "phonetics": [
+                      {
+                        "text": "həˈləʊ",
+                        "audio": "//ssl.gstatic.com/dictionary/static/sounds/20200429/hello--_gb_1.mp3"
+                      },
+                      {
+                        "text": "hɛˈləʊ"
+                      }
+                    ],
+                    "origin": "early 19th century: variant of earlier hollo ; related to holla.",
+                    "meanings": [
+                      {
+                        "partOfSpeech": "exclamation",
+                        "definitions": [
+                          {
+                            "definition": "used as a greeting or to begin a phone conversation.",
+                            "example": "hello there, Katie!",
+                            "synonyms": [],
+                            "antonyms": []
+                          }
+                        ]
+                      },
+                      {
+                        "partOfSpeech": "noun",
+                        "definitions": [
+                          {
+                            "definition": "an utterance of 'hello'; a greeting.",
+                            "example": "she was getting polite nods and hellos from people",
+                            "synonyms": [],
+                            "antonyms": []
+                          }
+                        ]
+                      },
+                      {
+                        "partOfSpeech": "verb",
+                        "definitions": [
+                          {
+                            "definition": "say or shout 'hello'.",
+                            "example": "I pressed the phone button and helloed",
+                            "synonyms": [],
+                            "antonyms": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Word not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WordEntry": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "type": "string",
+            "description": "The word being defined"
+          },
+          "phonetic": {
+            "type": "string",
+            "description": "Phonetic transcription of the word"
+          },
+          "phonetics": {
+            "type": "array",
+            "description": "Array of phonetic representations",
+            "items": {
+              "$ref": "#/components/schemas/Phonetic"
+            }
+          },
+          "origin": {
+            "type": "string",
+            "description": "Etymology and origin of the word"
+          },
+          "meanings": {
+            "type": "array",
+            "description": "Array of meanings for different parts of speech",
+            "items": {
+              "$ref": "#/components/schemas/Meaning"
+            }
+          }
+        }
+      },
+      "Phonetic": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Phonetic text representation"
+          },
+          "audio": {
+            "type": "string",
+            "description": "URL to audio pronunciation file"
+          }
+        }
+      },
+      "Meaning": {
+        "type": "object",
+        "properties": {
+          "partOfSpeech": {
+            "type": "string",
+            "description": "Part of speech (e.g., noun, verb, adjective)"
+          },
+          "definitions": {
+            "type": "array",
+            "description": "Array of definitions for this part of speech",
+            "items": {
+              "$ref": "#/components/schemas/Definition"
+            }
+          }
+        }
+      },
+      "Definition": {
+        "type": "object",
+        "properties": {
+          "definition": {
+            "type": "string",
+            "description": "The definition of the word"
+          },
+          "example": {
+            "type": "string",
+            "description": "Example usage of the word"
+          },
+          "synonyms": {
+            "type": "array",
+            "description": "List of synonyms",
+            "items": {
+              "type": "string"
+            }
+          },
+          "antonyms": {
+            "type": "array",
+            "description": "List of antonyms",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Error title"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Suggested resolution"
+          }
+        }
+      }
+    }
+  }
+}
