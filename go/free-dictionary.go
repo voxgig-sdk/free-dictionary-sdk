@@ -1,10 +1,10 @@
 package voxgigfreedictionarysdk
 
 import (
-	"github.com/voxgig-sdk/free-dictionary-sdk/core"
-	"github.com/voxgig-sdk/free-dictionary-sdk/entity"
-	"github.com/voxgig-sdk/free-dictionary-sdk/feature"
-	_ "github.com/voxgig-sdk/free-dictionary-sdk/utility"
+	"github.com/voxgig-sdk/free-dictionary-sdk/go/core"
+	"github.com/voxgig-sdk/free-dictionary-sdk/go/entity"
+	"github.com/voxgig-sdk/free-dictionary-sdk/go/feature"
+	_ "github.com/voxgig-sdk/free-dictionary-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

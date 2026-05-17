@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/free-dictionary-sdk/core"
+	"github.com/voxgig-sdk/free-dictionary-sdk/go/core"
 )
 
 type BaseFeature struct {

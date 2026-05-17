@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/free-dictionary-sdk"
-	"github.com/voxgig-sdk/free-dictionary-sdk/core"
+	sdk "github.com/voxgig-sdk/free-dictionary-sdk/go"
+	"github.com/voxgig-sdk/free-dictionary-sdk/go/core"
 )
 
 func TestEntryDirect(t *testing.T) {
