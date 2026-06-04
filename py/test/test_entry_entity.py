@@ -95,7 +95,6 @@ def _entry_basic_setup(extra):
         "FREEDICTIONARY_TEST_ENTRY_ENTID": idmap,
         "FREEDICTIONARY_TEST_LIVE": "FALSE",
         "FREEDICTIONARY_TEST_EXPLAIN": "FALSE",
-        "FREEDICTIONARY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -106,7 +105,6 @@ def _entry_basic_setup(extra):
     if env.get("FREEDICTIONARY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("FREEDICTIONARY_APIKEY"),
             },
             extra or {},
         ])

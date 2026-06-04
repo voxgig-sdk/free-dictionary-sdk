@@ -19,7 +19,17 @@
           }
         ],
         "title": "Free Dictionary API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "tagline": "Look up English word definitions, phonetics, audio pronunciations, and usage examples from a free open-source dictionary",
+        "homepage": "https://dictionaryapi.dev/",
+        "docs_url": "https://dictionaryapi.dev/",
+        "license_short": "Free to use; open source, maintained by volunteers (donations support hosting)",
+        "license_md": "- The service is described as permanently free with no usage cost\n- Maintained as an open-source project by meetDeveloper, with hosting funded via donations\n- No attribution or rate-limit terms are published on the docs page; check the project repository for the current licence before redistributing data",
+        "about_md": "The Free Dictionary API is a community-run lookup service for English words, maintained by [meetDeveloper](https://dictionaryapi.dev/) and hosted at `api.dictionaryapi.dev`. It is positioned as a building block for games, learning apps, and speech or text projects that need quick access to dictionary content.\n\nWhat you get from the API:\n- Word lookup by exact spelling via `GET /api/v2/entries/en/{word}`\n- Phonetic transcriptions and audio pronunciation links\n- Meanings grouped by part of speech (noun, verb, exclamation, and so on)\n- Individual definitions with example sentences\n- Synonyms and antonyms where available, plus origin/etymology when present\n\nThe service is CORS-enabled and requires no API key. Rate limits and dictionary source attributions are not formally documented, so production users should keep request volumes reasonable and consult the upstream project for current terms.",
+        "entity_desc": {
+          "entry": "A dictionary entry for a single English word, retrieved via `GET /api/v2/entries/en/{word}` and containing phonetics, audio links, and meanings grouped by part of speech with definitions, examples, synonyms, and antonyms."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -27,7 +37,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "entry": {
