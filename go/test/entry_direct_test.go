@@ -126,12 +126,14 @@ func entryDirectSetup(mockres any) *entryDirectSetupResult {
 	env := envOverride(map[string]any{
 		"FREEDICTIONARY_TEST_ENTRY_ENTID": map[string]any{},
 		"FREEDICTIONARY_TEST_LIVE":    "FALSE",
+		"FREEDICTIONARY_APIKEY":       "NONE",
 	})
 
 	live := env["FREEDICTIONARY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["FREEDICTIONARY_APIKEY"],
 		}
 		client := sdk.NewFreeDictionarySDK(mergedOpts)
 

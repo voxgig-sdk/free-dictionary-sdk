@@ -1,21 +1,8 @@
 # FreeDictionary SDK
 
-Look up English word definitions, phonetics, audio pronunciations, and usage examples from a free open-source dictionary
+Free Dictionary API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Free Dictionary API
-
-The Free Dictionary API is a community-run lookup service for English words, maintained by [meetDeveloper](https://dictionaryapi.dev/) and hosted at `api.dictionaryapi.dev`. It is positioned as a building block for games, learning apps, and speech or text projects that need quick access to dictionary content.
-
-What you get from the API:
-- Word lookup by exact spelling via `GET /api/v2/entries/en/{word}`
-- Phonetic transcriptions and audio pronunciation links
-- Meanings grouped by part of speech (noun, verb, exclamation, and so on)
-- Individual definitions with example sentences
-- Synonyms and antonyms where available, plus origin/etymology when present
-
-The service is CORS-enabled and requires no API key. Rate limits and dictionary source attributions are not formally documented, so production users should keep request volumes reasonable and consult the upstream project for current terms.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install free-dictionary-sdk
 luarocks install free-dictionary-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { FreeDictionarySDK } from 'free-dictionary'
 
-const client = new FreeDictionarySDK({})
+const client = new FreeDictionarySDK({
+  apikey: process.env.FREE-DICTIONARY_APIKEY,
+})
 
 // List all entrys
 const entrys = await client.Entry().list()
+console.log(entrys.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Entry** | A dictionary entry for a single English word, retrieved via `GET /api/v2/entries/en/{word}` and containing phonetics, audio links, and meanings grouped by part of speech with definitions, examples, synonyms, and antonyms. | `/entries/{language}/{word}` |
+| **Entry** |  | `/entries/{language}/{word}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from freedictionary_sdk import FreeDictionarySDK
 
-client = FreeDictionarySDK({})
+client = FreeDictionarySDK({
+    "apikey": os.environ.get("FREE-DICTIONARY_APIKEY"),
+})
 
 # List all entrys
-entrys, err = client.Entry(None).list(None, None)
+entrys, err = client.Entry().list()
+print(entrys)
 ```
 
 ### PHP
@@ -125,10 +118,13 @@ entrys, err = client.Entry(None).list(None, None)
 <?php
 require_once 'freedictionary_sdk.php';
 
-$client = new FreeDictionarySDK([]);
+$client = new FreeDictionarySDK([
+    "apikey" => getenv("FREE-DICTIONARY_APIKEY"),
+]);
 
 // List all entrys
-[$entrys, $err] = $client->Entry(null)->list(null, null);
+[$entrys, $err] = $client->Entry()->list();
+print_r($entrys);
 ```
 
 ### Golang
@@ -136,10 +132,13 @@ $client = new FreeDictionarySDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/free-dictionary-sdk/go"
 
-client := sdk.NewFreeDictionarySDK(map[string]any{})
+client := sdk.NewFreeDictionarySDK(map[string]any{
+    "apikey": os.Getenv("FREE-DICTIONARY_APIKEY"),
+})
 
 // List all entrys
 entrys, err := client.Entry(nil).List(nil, nil)
+fmt.Println(entrys)
 ```
 
 ### Ruby
@@ -147,10 +146,13 @@ entrys, err := client.Entry(nil).List(nil, nil)
 ```ruby
 require_relative "FreeDictionary_sdk"
 
-client = FreeDictionarySDK.new({})
+client = FreeDictionarySDK.new({
+  "apikey" => ENV["FREE-DICTIONARY_APIKEY"],
+})
 
 # List all entrys
-entrys, err = client.Entry(nil).list(nil, nil)
+entrys, err = client.Entry().list
+puts entrys
 ```
 
 ### Lua
@@ -158,10 +160,13 @@ entrys, err = client.Entry(nil).list(nil, nil)
 ```lua
 local sdk = require("free-dictionary_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("FREE-DICTIONARY_APIKEY"),
+})
 
 -- List all entrys
-local entrys, err = client:Entry(nil):list(nil, nil)
+local entrys, err = client:Entry():list()
+print(entrys)
 ```
 
 ## Unit testing in offline mode
@@ -180,25 +185,21 @@ const result = await client.Entry().load({ id: 'test01' })
 ### Python
 
 ```python
-client = FreeDictionarySDK.test(None, None)
-result, err = client.Entry(None).load(
-    {"id": "test01"}, None
-)
+client = FreeDictionarySDK.test()
+result, err = client.Entry().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = FreeDictionarySDK::test(null, null);
-[$result, $err] = $client->Entry(null)->load(
-    ["id" => "test01"], null
-);
+$client = FreeDictionarySDK::test();
+[$result, $err] = $client->Entry()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Entry(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -207,19 +208,15 @@ result, err := client.Entry(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeDictionarySDK.test(nil, nil)
-result, err = client.Entry(nil).load(
-  { "id" => "test01" }, nil
-)
+client = FreeDictionarySDK.test
+result, err = client.Entry().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Entry(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Entry():load({ id = "test01" })
 ```
 
 ## How it works
@@ -323,14 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Free Dictionary API
-
-- Upstream: [https://dictionaryapi.dev/](https://dictionaryapi.dev/)
-
-- The service is described as permanently free with no usage cost
-- Maintained as an open-source project by meetDeveloper, with hosting funded via donations
-- No attribution or rate-limit terms are published on the docs page; check the project repository for the current licence before redistributing data
 
 ---
 

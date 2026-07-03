@@ -115,6 +115,7 @@ function basicSetup(extra?: any) {
     'FREE_DICTIONARY_TEST_ENTRY_ENTID': idmap,
     'FREE_DICTIONARY_TEST_LIVE': 'FALSE',
     'FREE_DICTIONARY_TEST_EXPLAIN': 'FALSE',
+    'FREE_DICTIONARY_APIKEY': 'NONE',
   })
 
   idmap = env['FREE_DICTIONARY_TEST_ENTRY_ENTID']
@@ -124,6 +125,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new FreeDictionarySDK(merge([
       {
+        apikey: env.FREE_DICTIONARY_APIKEY,
       },
       extra
     ]))
