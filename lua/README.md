@@ -10,7 +10,7 @@ The Lua SDK for the FreeDictionary API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install free-dictionary-sdk
+luarocks install voxgig-sdk-free-dictionary
 ```
 
 If the module is not yet published, add the source directory to

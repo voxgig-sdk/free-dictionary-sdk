@@ -10,7 +10,7 @@ The TypeScript SDK for the FreeDictionary API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install free-dictionary
+npm install @voxgig-sdk/free-dictionary
 ```
 ## Tutorial: your first API call
 

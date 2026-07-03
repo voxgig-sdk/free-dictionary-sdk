@@ -8,12 +8,14 @@ source = {
   dir = "free-dictionary-sdk/lua"
 }
 description = {
-  summary = "FreeDictionary SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Free Dictionary public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/free-dictionary-sdk",
+  issues_url = "https://github.com/voxgig-sdk/free-dictionary-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "free-dictionary" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -10,13 +10,13 @@ The Ruby SDK for the FreeDictionary API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install free-dictionary-sdk
+gem install voxgig-sdk-free-dictionary
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "free-dictionary-sdk"
+gem "voxgig-sdk-free-dictionary"
 ```
 
 Then run:

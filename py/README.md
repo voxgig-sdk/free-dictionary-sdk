@@ -10,7 +10,7 @@ The Python SDK for the FreeDictionary API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install free-dictionary-sdk
+pip install voxgig-sdk-free-dictionary
 ```
 
 Or install from source:
