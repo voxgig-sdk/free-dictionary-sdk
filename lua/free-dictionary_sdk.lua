@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:entry():list() / client:entry():load({ id = ... })
-function FreeDictionarySDK:entry(data)
+-- Idiomatic facade: client:Entry():list() / client:Entry():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function FreeDictionarySDK:Entry(data)
   local EntityMod = require("entity.entry_entity")
   if data == nil then
     if self._entry == nil then
@@ -253,12 +254,6 @@ function FreeDictionarySDK:entry(data)
     end
     return self._entry
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:entry() instead.
-function FreeDictionarySDK:Entry(data)
-  local EntityMod = require("entity.entry_entity")
   return EntityMod.new(self, data)
 end
 

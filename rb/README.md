@@ -28,16 +28,14 @@ require_relative "FreeDictionary_sdk"
 client = FreeDictionarySDK.new
 ```
 
-### 2. List entrys
+### 2. List entry records
 
 ```ruby
 begin
-  result = client.entry.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Entry records — iterate directly.
+  entrys = client.Entry.list
+  entrys.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = FreeDictionarySDK.test
+client = FreeDictionarySDK.test({
+  "entity" => { "entry" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.entry.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+entry = client.Entry.load({ "id" => "test01" })
+puts entry
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Entry` | `(data) -> EntryEntity` | Create a Entry entity instance. |
+| `Entry` | `(data) -> EntryEntity` | Create an Entry entity instance. |
 
 ### Entity interface
 
@@ -226,7 +228,7 @@ API path: `/entries/{language}/{word}`
 
 ### Entry
 
-Create an instance: `const entry = client.entry`
+Create an instance: `entry = client.Entry`
 
 #### Operations
 
@@ -245,8 +247,9 @@ Create an instance: `const entry = client.entry`
 
 #### Example: List
 
-```ts
-const entrys = await client.entry.list()
+```ruby
+# list returns an Array of Entry records (raises on error).
+entrys = client.Entry.list
 ```
 
 
@@ -321,7 +324,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-entry = client.entry
+entry = client.Entry
 entry.load({ "id" => "example_id" })
 
 # entry.data_get now returns the loaded entry data

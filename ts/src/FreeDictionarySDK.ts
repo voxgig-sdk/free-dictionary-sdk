@@ -204,14 +204,7 @@ class FreeDictionarySDK {
 
 
 
-  _entry?: EntryEntity
-
-  // Idiomatic facade: `client.entry.list()` / `client.entry.load({ id })`.
-  get entry(): EntryEntity {
-    return (this._entry ??= new EntryEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.entry` instead. */
+  // Entity access: `client.Entry().list()` / `client.Entry().load({ id })`.
   Entry(data?: any) {
     const self = this
     return new EntryEntity(self,data)

@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## EntryEntity
 
 ```lua
-local entry = client:entry(nil)
+local entry = client:Entry(nil)
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ local entry = client:entry(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:entry():list()
+local results, err = client:Entry():list()
 ```
 
 ### Common Methods

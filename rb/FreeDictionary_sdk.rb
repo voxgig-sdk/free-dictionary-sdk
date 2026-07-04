@@ -208,13 +208,7 @@ class FreeDictionarySDK
   end
 
 
-  # Idiomatic facade: client.entry.list / client.entry.load({ "id" => ... })
-  def entry
-    require_relative 'entity/entry_entity'
-    @entry ||= EntryEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.entry instead.
+  # Canonical facade: client.Entry.list / client.Entry.load({ "id" => ... })
   def Entry(data = nil)
     require_relative 'entity/entry_entity'
     EntryEntity.new(self, data)

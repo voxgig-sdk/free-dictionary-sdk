@@ -31,14 +31,16 @@ from freedictionary_sdk import FreeDictionarySDK
 client = FreeDictionarySDK()
 ```
 
-### 2. List entrys
+### 2. List entry records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.entry.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    entrys = client.Entry().list({})
+    for entry in entrys:
+        print(entry)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeDictionarySDK.test()
 
-result = client.entry.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+entry = client.Entry().load({"id": "test01"})
+# entry contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Entry` | `(data) -> EntryEntity` | Create a Entry entity instance. |
+| `Entry` | `(data) -> EntryEntity` | Create an Entry entity instance. |
 
 ### Entity interface
 
@@ -223,7 +226,7 @@ API path: `/entries/{language}/{word}`
 
 ### Entry
 
-Create an instance: `const entry = client.entry`
+Create an instance: `entry = client.Entry()`
 
 #### Operations
 
@@ -242,8 +245,8 @@ Create an instance: `const entry = client.entry`
 
 #### Example: List
 
-```ts
-const entrys = await client.entry.list()
+```python
+entrys = client.Entry().list({})
 ```
 
 
@@ -317,7 +320,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-entry = client.entry
+entry = client.Entry()
 entry.load({"id": "example_id"})
 
 # entry.data_get() now returns the loaded entry data

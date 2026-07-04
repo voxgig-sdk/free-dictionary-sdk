@@ -109,7 +109,7 @@ Alias for `FreeDictionarySDK.test()`.
 ## EntryEntity
 
 ```ts
-const entry = client.entry
+const entry = client.Entry()
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ const entry = client.entry
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.entry.list()
+const results = await client.Entry().list()
 ```
 
 ### Common Methods

@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EntryEntity
 
 ```php
-$entry = $client->entry();
+$entry = $client->Entry();
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ $entry = $client->entry();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->entry()->list([]);
+$results = $client->Entry()->list([]);
 ```
 
 ### Common Methods

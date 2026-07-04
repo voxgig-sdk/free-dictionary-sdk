@@ -26,9 +26,11 @@ import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
 
 const client = new FreeDictionarySDK()
 
-// List all entrys
-const entrys = await client.entry.list()
-console.log(entrys.data)
+// List all entrys (returns Entry[])
+const entrys = await client.Entry().list()
+for (const entry of entrys) {
+  console.log(entry)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from freedictionary_sdk import FreeDictionarySDK
 
 client = FreeDictionarySDK()
 
-# List all entrys
-entrys = client.entry.list()
-print(entrys)
+# List all entrys (returns a list, raises on error)
+entrys = client.Entry().list({})
+for entry in entrys:
+    print(entry)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'freedictionary_sdk.php';
 
 $client = new FreeDictionarySDK();
 
-// List all entrys (throws on error)
-$entrys = $client->entry()->list();
+// List all entrys (returns an array; throws on error)
+$entrys = $client->Entry()->list();
 print_r($entrys);
 ```
 
@@ -120,8 +123,8 @@ require_relative "FreeDictionary_sdk"
 
 client = FreeDictionarySDK.new
 
-# List all entrys
-entrys = client.entry.list
+# List all entrys (returns an Array; raises on error)
+entrys = client.Entry.list
 puts entrys
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("free-dictionary_sdk")
 local client = sdk.new()
 
 -- List all entrys
-local entrys, err = client:entry():list()
+local entrys, err = client:Entry():list()
 print(entrys)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = FreeDictionarySDK.test()
-const result = await client.entry.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const entry = await client.Entry().load({ id: 'test01' })
+// entry is a bare Entry populated with mock data
+console.log(entry)
 ```
 
 ### Python
 
 ```python
 client = FreeDictionarySDK.test()
-result = client.entry.load({"id": "test01"})
+entry = client.Entry().load({"id": "test01"})
+print(entry)
 ```
 
 ### PHP
 
 ```php
-$client = FreeDictionarySDK::test();
-$result = $client->entry()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = FreeDictionarySDK::test([
+    "entity" => ["entry" => ["test01" => ["id" => "test01"]]],
+]);
+$entry = $client->Entry()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Entry(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeDictionarySDK.test
-result = client.entry.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = FreeDictionarySDK.test({
+  "entity" => { "entry" => { "test01" => { "id" => "test01" } } },
+})
+entry = client.Entry.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:entry():load({ id = "test01" })
+local result, err = client:Entry():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

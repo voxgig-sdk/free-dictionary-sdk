@@ -220,25 +220,15 @@ class FreeDictionarySDK:
         }
 
 
-    @property
-    def entry(self):
-        """Idiomatic facade: client.entry.list() / client.entry.load({"id": ...})."""
-        from entity.entry_entity import EntryEntity
-        cached = getattr(self, "_entry", None)
-        if cached is None:
-            cached = EntryEntity(self, None)
-            self._entry = cached
-        return cached
-
-    def Entry(self, data=None):
-        # Deprecated: use client.entry instead.
+    def Entry(self, data=None) -> "EntryEntity":
+        """Entity factory: client.Entry().list({}) / client.Entry().load({"id": ...})."""
         from entity.entry_entity import EntryEntity
         return EntryEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "FreeDictionarySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class FreeDictionarySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.entry_entity import EntryEntity
