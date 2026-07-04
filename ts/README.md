@@ -9,9 +9,12 @@ The TypeScript SDK for the FreeDictionary API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/free-dictionary
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/free-dictionary-sdk/releases](https://github.com/voxgig-sdk/free-dictionary-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeDictionarySDK } from 'free-dictionary'
+import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
 
-const client = new FreeDictionarySDK({
-  apikey: process.env.FREE-DICTIONARY_APIKEY,
-})
+const client = new FreeDictionarySDK()
 ```
 
 ### 2. List entrys
 
 ```ts
-const result = await client.Entry().list()
+const result = await client.entry.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = FreeDictionarySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.entry.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new FreeDictionarySDK({ apikey: '...' })
+const client = new FreeDictionarySDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.entry
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new FreeDictionarySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new FreeDictionarySDK({
 Create a `.env.local` file at the project root:
 
 ```
-FREE-DICTIONARY_TEST_LIVE=TRUE
-FREE-DICTIONARY_APIKEY=<your-key>
+FREE_DICTIONARY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new FreeDictionarySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new FreeDictionarySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -271,7 +268,7 @@ API path: `/entries/{language}/{word}`
 
 ### Entry
 
-Create an instance: `const entry = client.Entry()`
+Create an instance: `const entry = client.entry`
 
 #### Operations
 
@@ -291,7 +288,7 @@ Create an instance: `const entry = client.Entry()`
 #### Example: List
 
 ```ts
-const entrys = await client.Entry().list()
+const entrys = await client.entry.list()
 ```
 
 
@@ -352,7 +349,7 @@ free-dictionary/
 Import the SDK from the package root:
 
 ```ts
-import { FreeDictionarySDK } from 'free-dictionary'
+import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
 ```
 
 ### Entity state
@@ -362,11 +359,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const entry = client.entry
+await entry.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// entry.data() now returns the loaded entry data
+// entry.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

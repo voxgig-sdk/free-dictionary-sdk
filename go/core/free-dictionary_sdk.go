@@ -245,6 +245,9 @@ func (sdk *FreeDictionarySDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// Entry returns a Entry entity bound to this client.
+// Idiomatic usage: client.Entry(nil).List(nil, nil) or
+// client.Entry(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *FreeDictionarySDK) Entry(data map[string]any) FreeDictionaryEntity {
 	return NewEntryEntityFunc(sdk, data)
 }

@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api.dictionaryapi.dev/api/v2",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -74,6 +71,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -83,6 +81,7 @@ local function make_config()
                       ["orig"] = "word",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },

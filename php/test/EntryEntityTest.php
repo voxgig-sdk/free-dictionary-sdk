@@ -53,8 +53,7 @@ class EntryEntityTest extends TestCase
             "word" => $setup["idmap"]["word01"],
         ];
 
-        [$entry_ref01_list_result, $err] = $entry_ref01_ent->list($entry_ref01_match, null);
-        $this->assertNull($err);
+        $entry_ref01_list_result = $entry_ref01_ent->list($entry_ref01_match, null);
         $this->assertIsArray($entry_ref01_list_result);
 
     }
@@ -89,7 +88,6 @@ function entry_basic_setup($extra)
         "FREEDICTIONARY_TEST_ENTRY_ENTID" => $idmap,
         "FREEDICTIONARY_TEST_LIVE" => "FALSE",
         "FREEDICTIONARY_TEST_EXPLAIN" => "FALSE",
-        "FREEDICTIONARY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -101,7 +99,6 @@ function entry_basic_setup($extra)
     if ($env["FREEDICTIONARY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["FREEDICTIONARY_APIKEY"],
             ],
             $extra ?? [],
         ]);

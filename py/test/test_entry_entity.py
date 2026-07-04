@@ -53,8 +53,7 @@ class TestEntryEntity:
             "word": setup["idmap"]["word01"],
         }
 
-        entry_ref01_list_result, err = entry_ref01_ent.list(entry_ref01_match, None)
-        assert err is None
+        entry_ref01_list_result = entry_ref01_ent.list(entry_ref01_match, None)
         assert isinstance(entry_ref01_list_result, list)
 
 
@@ -95,7 +94,6 @@ def _entry_basic_setup(extra):
         "FREEDICTIONARY_TEST_ENTRY_ENTID": idmap,
         "FREEDICTIONARY_TEST_LIVE": "FALSE",
         "FREEDICTIONARY_TEST_EXPLAIN": "FALSE",
-        "FREEDICTIONARY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -106,7 +104,6 @@ def _entry_basic_setup(extra):
     if env.get("FREEDICTIONARY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("FREEDICTIONARY_APIKEY"),
             },
             extra or {},
         ])

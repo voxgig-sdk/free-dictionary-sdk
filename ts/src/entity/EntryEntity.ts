@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Entry,
+  EntryListMatch,
+} from '../FreeDictionaryTypes'
 
 // TODO: needs Entity superclass
-class EntryEntity extends FreeDictionaryEntityBase {
+class EntryEntity extends FreeDictionaryEntityBase<Entry> {
 
   constructor(client: FreeDictionarySDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class EntryEntity extends FreeDictionaryEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: EntryListMatch, ctrl?: Control): Promise<Entry[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class EntryEntity extends FreeDictionaryEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Entry[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

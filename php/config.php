@@ -20,9 +20,6 @@ class FreeDictionaryConfig
             ],
             "options" => [
                 "base" => "https://api.dictionaryapi.dev/api/v2",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -80,6 +77,7 @@ class FreeDictionaryConfig
                         'orig' => 'language',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -89,6 +87,7 @@ class FreeDictionaryConfig
                         'orig' => 'word',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],

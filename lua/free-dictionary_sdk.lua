@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:entry():list() / client:entry():load({ id = ... })
+function FreeDictionarySDK:entry(data)
+  local EntityMod = require("entity.entry_entity")
+  if data == nil then
+    if self._entry == nil then
+      self._entry = EntityMod.new(self, nil)
+    end
+    return self._entry
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:entry() instead.
 function FreeDictionarySDK:Entry(data)
   local EntityMod = require("entity.entry_entity")
   return EntityMod.new(self, data)

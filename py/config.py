@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api.dictionaryapi.dev/api/v2",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -75,6 +72,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -84,6 +82,7 @@ def make_config():
                       "orig": "word",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
