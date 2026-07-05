@@ -221,7 +221,7 @@ class FreeDictionarySDK:
 
 
     def Entry(self, data=None) -> "EntryEntity":
-        """Entity factory: client.Entry().list({}) / client.Entry().load({"id": ...})."""
+        """Entity factory: client.Entry().list() / client.Entry().load({"id": ...})."""
         from entity.entry_entity import EntryEntity
         return EntryEntity(self, data)
 

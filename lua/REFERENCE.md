@@ -90,10 +90,10 @@ local entry = client:Entry(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | ``$ARRAY`` | No |  |
-| `origin` | ``$STRING`` | No |  |
-| `phonetic` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `meaning` | `table` | No |  |
+| `origin` | `string` | No |  |
+| `phonetic` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 

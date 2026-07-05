@@ -116,10 +116,10 @@ const entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | ``$ARRAY`` | No |  |
-| `origin` | ``$STRING`` | No |  |
-| `phonetic` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `meaning` | `any[]` | No |  |
+| `origin` | `string` | No |  |
+| `phonetic` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 

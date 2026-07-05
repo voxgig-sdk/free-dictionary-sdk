@@ -8,7 +8,7 @@ Complete API reference for the FreeDictionary Python SDK.
 ### Constructor
 
 ```python
-from free-dictionary_sdk import FreeDictionarySDK
+from freedictionary_sdk import FreeDictionarySDK
 
 client = FreeDictionarySDK(options)
 ```
@@ -87,19 +87,19 @@ entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | ``$ARRAY`` | No |  |
-| `origin` | ``$STRING`` | No |  |
-| `phonetic` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `meaning` | `list` | No |  |
+| `origin` | `str` | No |  |
+| `phonetic` | `str` | No |  |
+| `word` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Entry().list({})
+results = client.Entry().list()
 for entry in results:
     print(entry)
 ```
