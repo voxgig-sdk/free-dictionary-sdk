@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 entry := client.Entry(nil)
+fmt.Println(entry.GetName()) // "entry"
 ```
 
 ### Fields
@@ -110,6 +111,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Entry(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

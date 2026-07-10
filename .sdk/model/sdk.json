@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -246,14 +243,17 @@
         "license": {
           "name": "Free to use"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.dictionaryapi.dev/api/v2"
           }
         ],
+        "summary": "This API allows users to access word definitions, phonetics, and usage examples by sending a request with a specific English word.",
         "title": "Free Dictionary API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "website": "https://dictionaryapi.dev"
       },
       "option": {},
       "target": {
@@ -306,6 +306,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -356,6 +359,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
