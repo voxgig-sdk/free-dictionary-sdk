@@ -87,9 +87,10 @@ entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | `list` | No |  |
+| `meanings` | `list` | No |  |
 | `origin` | `str` | No |  |
 | `phonetic` | `str` | No |  |
+| `phonetics` | `list` | No |  |
 | `word` | `str` | No |  |
 
 ### Operations
@@ -99,7 +100,7 @@ entry = client.Entry()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Entry().list()
+results = client.Entry().list({"language": "example", "word": "example"})
 for entry in results:
     print(entry)
 ```

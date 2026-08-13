@@ -93,9 +93,10 @@ entry = client.Entry
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | `Array` | No |  |
+| `meanings` | `Array` | No |  |
 | `origin` | `String` | No |  |
 | `phonetic` | `String` | No |  |
+| `phonetics` | `Array` | No |  |
 | `word` | `String` | No |  |
 
 ### Operations

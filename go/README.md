@@ -260,9 +260,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"meaning"` |  |
+| `"meanings"` |  |
 | `"origin"` |  |
 | `"phonetic"` |  |
+| `"phonetics"` |  |
 | `"word"` |  |
 
 Operations: List.
@@ -288,9 +289,10 @@ Create an instance: `entry := client.Entry(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meaning` | `[]any` |  |
+| `meanings` | `[]any` |  |
 | `origin` | `string` |  |
 | `phonetic` | `string` |  |
+| `phonetics` | `[]any` |  |
 | `word` | `string` |  |
 
 #### Example: List

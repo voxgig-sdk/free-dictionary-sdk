@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    entrys = client.Entry().list()
+    entrys = client.Entry().list({"language": "example", "word": "example"})
     for entry in entrys:
         print(entry)
 except Exception as err:
@@ -124,7 +124,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeDictionarySDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 entry = client.Entry().list()
 # entry contains the mock response record
 ```
@@ -220,7 +221,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -242,9 +243,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `meaning` |  |
+| `meanings` |  |
 | `origin` |  |
 | `phonetic` |  |
+| `phonetics` |  |
 | `word` |  |
 
 Operations: List.
@@ -270,15 +272,16 @@ Create an instance: `entry = client.Entry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meaning` | `list` |  |
+| `meanings` | `list` |  |
 | `origin` | `str` |  |
 | `phonetic` | `str` |  |
+| `phonetics` | `list` |  |
 | `word` | `str` |  |
 
 #### Example: List
 
 ```python
-entrys = client.Entry().list()
+entrys = client.Entry().list({"language": "example", "word": "example"})
 ```
 
 

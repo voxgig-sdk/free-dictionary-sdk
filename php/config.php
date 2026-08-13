@@ -32,7 +32,7 @@ class FreeDictionaryConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'meaning',
+              'name' => 'meanings',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -53,10 +53,17 @@ class FreeDictionaryConfig
             ],
             [
               'active' => true,
+              'name' => 'phonetics',
+              'req' => false,
+              'type' => '`$ARRAY`',
+              'index$' => 3,
+            ],
+            [
+              'active' => true,
               'name' => 'word',
               'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
+              'index$' => 4,
             ],
           ],
           'name' => 'entry',
@@ -91,6 +98,7 @@ class FreeDictionaryConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/entries/{language}/{word}',
                   'parts' => [

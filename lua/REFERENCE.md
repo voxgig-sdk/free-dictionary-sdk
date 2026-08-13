@@ -90,9 +90,10 @@ local entry = client:Entry(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | `table` | No |  |
+| `meanings` | `table` | No |  |
 | `origin` | `string` | No |  |
 | `phonetic` | `string` | No |  |
+| `phonetics` | `table` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations

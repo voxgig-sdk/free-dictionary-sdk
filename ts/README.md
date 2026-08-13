@@ -35,10 +35,12 @@ const client = new FreeDictionarySDK()
 
 ### 2. List entry records
 
-`list()` resolves to an array of Entry objects — iterate it directly:
+`list()` resolves to an array of Entry ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const entrys = await client.Entry().list()
+const entrys = await client.Entry().list({ language: "example", word: "example" })
 
 for (const entry of entrys) {
   console.log(entry)
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = FreeDictionarySDK.test()
 
 const entry = await client.Entry().list()
-// entry is a bare entity populated with mock response data
+// entry is the entity, populated with mock response data
+// — call entry.data() for the record itself
 console.log(entry)
 ```
 
@@ -284,9 +287,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `meaning` |  |
+| `meanings` |  |
 | `origin` |  |
 | `phonetic` |  |
+| `phonetics` |  |
 | `word` |  |
 
 Operations: list.
@@ -312,15 +316,16 @@ Create an instance: `const entry = client.Entry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meaning` | `any[]` |  |
+| `meanings` | `any[]` |  |
 | `origin` | `string` |  |
 | `phonetic` | `string` |  |
+| `phonetics` | `any[]` |  |
 | `word` | `string` |  |
 
 #### Example: List
 
 ```ts
-const entrys = await client.Entry().list()
+const entrys = await client.Entry().list({ language: "example", word: "example" })
 ```
 
 

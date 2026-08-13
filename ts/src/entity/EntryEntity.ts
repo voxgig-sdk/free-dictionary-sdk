@@ -37,7 +37,7 @@ class EntryEntity extends FreeDictionaryEntityBase<Entry> {
 
 
 
-  async list(this: any, reqmatch?: EntryListMatch, ctrl?: Control): Promise<Entry[]> {
+  async list(this: any, reqmatch?: EntryListMatch, ctrl?: Control): Promise<EntryEntity[]> {
 
     const utility = this._utility
 

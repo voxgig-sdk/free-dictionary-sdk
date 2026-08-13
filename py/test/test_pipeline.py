@@ -16,11 +16,11 @@
 import pytest
 
 from freedictionary_sdk import FreeDictionarySDK
-from core.error import FreeDictionaryError
-from core.result import FreeDictionaryResult
-from core.response import FreeDictionaryResponse
-from core.spec import FreeDictionarySpec
-from feature.base_feature import FreeDictionaryBaseFeature
+from freedictionary_sdk.core.error import FreeDictionaryError
+from freedictionary_sdk.core.result import FreeDictionaryResult
+from freedictionary_sdk.core.response import FreeDictionaryResponse
+from freedictionary_sdk.core.spec import FreeDictionarySpec
+from freedictionary_sdk.feature.base_feature import FreeDictionaryBaseFeature
 
 
 def _client():

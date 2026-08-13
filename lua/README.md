@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local entry, err = client:Entry():load()
+    local entry, err = client:Entry():list()
     if err then error(err) end
-    -- entry is the loaded record
+    -- entry is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -231,9 +231,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `meaning` |  |
+| `meanings` |  |
 | `origin` |  |
 | `phonetic` |  |
+| `phonetics` |  |
 | `word` |  |
 
 Operations: List.
@@ -259,9 +260,10 @@ Create an instance: `local entry = client:Entry(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meaning` | `table` |  |
+| `meanings` | `table` |  |
 | `origin` | `string` |  |
 | `phonetic` | `string` |  |
+| `phonetics` | `table` |  |
 | `word` | `string` |  |
 
 #### Example: List

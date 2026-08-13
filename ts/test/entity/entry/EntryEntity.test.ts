@@ -26,8 +26,8 @@ import {
 describe('EntryEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when FREEDICTIONARY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('FREEDICTIONARY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when FREE_DICTIONARY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('FREE_DICTIONARY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = FreeDictionarySDK.test()
@@ -65,7 +65,7 @@ describe('EntryEntity', async () => {
     entry_ref01_match['language'] = setup.idmap['language01']
     entry_ref01_match['word'] = setup.idmap['word01']
 
-    const entry_ref01_list = await entry_ref01_ent.list(entry_ref01_match)
+    const entry_ref01_list = (await entry_ref01_ent.list(entry_ref01_match)).map((e: any) => e.data())
 
 
   })

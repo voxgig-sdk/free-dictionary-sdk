@@ -6,9 +6,10 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Entry {
-  meaning?: any[]
+  meanings?: any[]
   origin?: string
   phonetic?: string
+  phonetics?: any[]
   word?: string
 }
 

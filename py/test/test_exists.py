@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# FreeDictionary SDK exists test
 
 import pytest
 from freedictionary_sdk import FreeDictionarySDK

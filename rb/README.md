@@ -37,7 +37,7 @@ begin
   # list returns an Array of Entry records — iterate directly.
   entrys = client.Entry.list
   entrys.each do |item|
-    puts "#{item["meaning"]}"
+    puts "#{item["meanings"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeDictionarySDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 entry = client.Entry.list()
 puts entry
 ```
@@ -236,9 +237,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `meaning` |  |
+| `meanings` |  |
 | `origin` |  |
 | `phonetic` |  |
+| `phonetics` |  |
 | `word` |  |
 
 Operations: List.
@@ -264,9 +266,10 @@ Create an instance: `entry = client.Entry`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meaning` | `Array` |  |
+| `meanings` | `Array` |  |
 | `origin` | `String` |  |
 | `phonetic` | `String` |  |
+| `phonetics` | `Array` |  |
 | `word` | `String` |  |
 
 #### Example: List

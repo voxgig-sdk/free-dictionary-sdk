@@ -7,9 +7,10 @@
 -- edit by hand.
 
 ---@class Entry
----@field meaning? table
+---@field meanings? table
 ---@field origin? string
 ---@field phonetic? string
+---@field phonetics? table
 ---@field word? string
 
 ---@class EntryListMatch

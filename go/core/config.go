@@ -26,7 +26,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "meaning",
+						"name": "meanings",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -47,10 +47,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
+						"name": "phonetics",
+						"req": false,
+						"type": "`$ARRAY`",
+						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
 						"name": "word",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 4,
 					},
 				},
 				"name": "entry",
@@ -85,6 +92,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/entries/{language}/{word}",
 								"parts": []any{
@@ -105,7 +113,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

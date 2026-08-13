@@ -80,11 +80,11 @@ function entry_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["FREEDICTIONARY_TEST_ENTRY_ENTID"] = {},
-    ["FREEDICTIONARY_TEST_LIVE"] = "FALSE",
+    ["FREE_DICTIONARY_TEST_ENTRY_ENTID"] = {},
+    ["FREE_DICTIONARY_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["FREEDICTIONARY_TEST_LIVE"] == "TRUE"
+  local live = env["FREE_DICTIONARY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

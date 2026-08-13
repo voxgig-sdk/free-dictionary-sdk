@@ -116,9 +116,10 @@ const entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | `any[]` | No |  |
+| `meanings` | `any[]` | No |  |
 | `origin` | `string` | No |  |
 | `phonetic` | `string` | No |  |
+| `phonetics` | `any[]` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations
@@ -128,7 +129,7 @@ const entry = client.Entry()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Entry().list()
+const results = await client.Entry().list({ language: "example", word: "example" })
 ```
 
 ### Common Methods

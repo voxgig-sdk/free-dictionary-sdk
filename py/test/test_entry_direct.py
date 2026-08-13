@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from freedictionary_sdk.utility.voxgig_struct import voxgig_struct as vs
 from freedictionary_sdk import FreeDictionarySDK
-from core import helpers
+from freedictionary_sdk.core import helpers
 from test import runner
 
 
@@ -74,11 +74,11 @@ def _entry_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "FREEDICTIONARY_TEST_ENTRY_ENTID": {},
-        "FREEDICTIONARY_TEST_LIVE": "FALSE",
+        "FREE_DICTIONARY_TEST_ENTRY_ENTID": {},
+        "FREE_DICTIONARY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("FREEDICTIONARY_TEST_LIVE") == "TRUE"
+    live = env.get("FREE_DICTIONARY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

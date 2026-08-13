@@ -15,9 +15,10 @@ declare(strict_types=1);
 /** Entry entity data model. */
 class Entry
 {
-    public ?array $meaning = null;
+    public ?array $meanings = null;
     public ?string $origin = null;
     public ?string $phonetic = null;
+    public ?array $phonetics = null;
     public ?string $word = null;
 }
 

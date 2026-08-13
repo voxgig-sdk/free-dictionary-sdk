@@ -23,7 +23,7 @@ support (`list`):
 
 ```ts
 const client = new FreeDictionarySDK()
-const items = await client.Entry().list()
+const items = await client.Entry().list({ language: "example", word: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = FreeDictionarySDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = FreeDictionarySDK.test({
+  entity: {
+    entry: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const entrys = await client.Entry().list()
-// entrys is an array of bare Entry records populated with mock data
+// entrys is an array of Entry entities, populated with mock data
+// — call entrys[0].data() for the record itself
 console.log(entrys)
 ```
 
@@ -110,8 +119,8 @@ import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
 
 const client = new FreeDictionarySDK()
 
-// List all entrys (returns Entry[])
-const entrys = await client.Entry().list()
+// List all entrys (returns EntryEntity[] — .data() for the record)
+const entrys = await client.Entry().list({ language: "example", word: "example" })
 for (const entry of entrys) {
   console.log(entry)
 }
@@ -170,7 +179,7 @@ from freedictionary_sdk import FreeDictionarySDK
 client = FreeDictionarySDK()
 
 # List all entrys (returns a list, raises on error)
-entrys = client.Entry().list()
+entrys = client.Entry().list({"language": "example", "word": "example"})
 for entry in entrys:
     print(entry)
 ```
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://dictionaryapi.dev/](https://dictionaryapi.dev/)
 

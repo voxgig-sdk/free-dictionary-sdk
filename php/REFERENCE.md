@@ -92,9 +92,10 @@ $entry = $client->Entry();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meaning` | `array` | No |  |
+| `meanings` | `array` | No |  |
 | `origin` | `string` | No |  |
 | `phonetic` | `string` | No |  |
+| `phonetics` | `array` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations

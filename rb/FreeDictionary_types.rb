@@ -10,7 +10,7 @@
 
 # Entry entity data model.
 #
-# @!attribute [rw] meaning
+# @!attribute [rw] meanings
 #   @return [Array, nil]
 #
 # @!attribute [rw] origin
@@ -19,12 +19,16 @@
 # @!attribute [rw] phonetic
 #   @return [String, nil]
 #
+# @!attribute [rw] phonetics
+#   @return [Array, nil]
+#
 # @!attribute [rw] word
 #   @return [String, nil]
 Entry = Struct.new(
-  :meaning,
+  :meanings,
   :origin,
   :phonetic,
+  :phonetics,
   :word,
   keyword_init: true
 )
