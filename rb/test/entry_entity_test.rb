@@ -33,7 +33,7 @@ class EntryEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = FreeDictionaryConfig.make_config
+    cfg = FreeDictionaryConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = FreeDictionarySDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

@@ -40,7 +40,7 @@ class FreeDictionarySDK
         $utility = new FreeDictionaryUtility();
         $this->_utility = $utility;
 
-        $config = FreeDictionaryConfig::make_config();
+        $config = FreeDictionaryConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

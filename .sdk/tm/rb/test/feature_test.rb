@@ -15,7 +15,7 @@ require_relative "../FreeDictionary_sdk"
 module FreeDictionaryFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = FreeDictionaryConfig.make_config["feature"]
+    f = FreeDictionaryConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
