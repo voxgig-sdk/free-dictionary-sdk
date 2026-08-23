@@ -36,30 +36,35 @@
               "active": true,
               "name": "meanings",
               "req": false,
+              "short": "Array of meanings for different parts of speech",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "origin",
               "req": false,
+              "short": "Etymology and origin of the word",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phonetic",
               "req": false,
+              "short": "Phonetic transcription of the word",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "phonetics",
               "req": false,
+              "short": "Array of phonetic representations",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "word",
               "req": false,
+              "short": "The word being defined",
               "type": "`$STRING`"
             }
           ],

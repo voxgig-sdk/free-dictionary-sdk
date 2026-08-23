@@ -90,11 +90,11 @@ local entry = client:Entry(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meanings` | `table` | No |  |
-| `origin` | `string` | No |  |
-| `phonetic` | `string` | No |  |
-| `phonetics` | `table` | No |  |
-| `word` | `string` | No |  |
+| `meanings` | `table` | No | Array of meanings for different parts of speech |
+| `origin` | `string` | No | Etymology and origin of the word |
+| `phonetic` | `string` | No | Phonetic transcription of the word |
+| `phonetics` | `table` | No | Array of phonetic representations |
+| `word` | `string` | No | The word being defined |
 
 ### Operations
 

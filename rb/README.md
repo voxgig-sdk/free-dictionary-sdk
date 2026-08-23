@@ -237,11 +237,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `meanings` |  |
-| `origin` |  |
-| `phonetic` |  |
-| `phonetics` |  |
-| `word` |  |
+| `meanings` | Array of meanings for different parts of speech |
+| `origin` | Etymology and origin of the word |
+| `phonetic` | Phonetic transcription of the word |
+| `phonetics` | Array of phonetic representations |
+| `word` | The word being defined |
 
 Operations: List.
 
@@ -266,11 +266,11 @@ Create an instance: `entry = client.Entry`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meanings` | `Array` |  |
-| `origin` | `String` |  |
-| `phonetic` | `String` |  |
-| `phonetics` | `Array` |  |
-| `word` | `String` |  |
+| `meanings` | `Array` | Array of meanings for different parts of speech |
+| `origin` | `String` | Etymology and origin of the word |
+| `phonetic` | `String` | Phonetic transcription of the word |
+| `phonetics` | `Array` | Array of phonetic representations |
+| `word` | `String` | The word being defined |
 
 #### Example: List
 

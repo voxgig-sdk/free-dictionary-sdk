@@ -8,26 +8,31 @@ main: kit: entity: entry: {
     {
       name: "meanings"
       req: false
+      short: "Array of meanings for different parts of speech"
       type: "`$ARRAY`"
     }
     {
       name: "origin"
       req: false
+      short: "Etymology and origin of the word"
       type: "`$STRING`"
     }
     {
       name: "phonetic"
       req: false
+      short: "Phonetic transcription of the word"
       type: "`$STRING`"
     }
     {
       name: "phonetics"
       req: false
+      short: "Array of phonetic representations"
       type: "`$ARRAY`"
     }
     {
       name: "word"
       req: false
+      short: "The word being defined"
       type: "`$STRING`"
     }
   ]

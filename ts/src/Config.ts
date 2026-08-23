@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'FreeDictionary',
+        slug: "free-dictionary",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -56,22 +67,27 @@ class Config {
       "fields": [
         {
           "name": "meanings",
+          "short": "Array of meanings for different parts of speech",
           "type": "`$ARRAY`"
         },
         {
           "name": "origin",
+          "short": "Etymology and origin of the word",
           "type": "`$STRING`"
         },
         {
           "name": "phonetic",
+          "short": "Phonetic transcription of the word",
           "type": "`$STRING`"
         },
         {
           "name": "phonetics",
+          "short": "Array of phonetic representations",
           "type": "`$ARRAY`"
         },
         {
           "name": "word",
+          "short": "The word being defined",
           "type": "`$STRING`"
         }
       ],

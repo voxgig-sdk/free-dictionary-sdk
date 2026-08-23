@@ -33,6 +33,9 @@ class FreeDictionaryConfig
         return [
             "main" => [
                 "name" => "FreeDictionary",
+                "slug" => "free-dictionary",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -55,22 +58,27 @@ class FreeDictionaryConfig
           'fields' => [
             [
               'name' => 'meanings',
+              'short' => 'Array of meanings for different parts of speech',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'origin',
+              'short' => 'Etymology and origin of the word',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'phonetic',
+              'short' => 'Phonetic transcription of the word',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'phonetics',
+              'short' => 'Array of phonetic representations',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'word',
+              'short' => 'The word being defined',
               'type' => '`$STRING`',
             ],
           ],

@@ -92,11 +92,11 @@ $entry = $client->Entry();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meanings` | `array` | No |  |
-| `origin` | `string` | No |  |
-| `phonetic` | `string` | No |  |
-| `phonetics` | `array` | No |  |
-| `word` | `string` | No |  |
+| `meanings` | `array` | No | Array of meanings for different parts of speech |
+| `origin` | `string` | No | Etymology and origin of the word |
+| `phonetic` | `string` | No | Phonetic transcription of the word |
+| `phonetics` | `array` | No | Array of phonetic representations |
+| `word` | `string` | No | The word being defined |
 
 ### Operations
 

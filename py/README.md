@@ -243,11 +243,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `meanings` |  |
-| `origin` |  |
-| `phonetic` |  |
-| `phonetics` |  |
-| `word` |  |
+| `meanings` | Array of meanings for different parts of speech |
+| `origin` | Etymology and origin of the word |
+| `phonetic` | Phonetic transcription of the word |
+| `phonetics` | Array of phonetic representations |
+| `word` | The word being defined |
 
 Operations: List.
 
@@ -272,11 +272,11 @@ Create an instance: `entry = client.Entry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meanings` | `list` |  |
-| `origin` | `str` |  |
-| `phonetic` | `str` |  |
-| `phonetics` | `list` |  |
-| `word` | `str` |  |
+| `meanings` | `list` | Array of meanings for different parts of speech |
+| `origin` | `str` | Etymology and origin of the word |
+| `phonetic` | `str` | Phonetic transcription of the word |
+| `phonetics` | `list` | Array of phonetic representations |
+| `word` | `str` | The word being defined |
 
 #### Example: List
 

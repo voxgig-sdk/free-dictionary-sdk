@@ -87,11 +87,11 @@ entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meanings` | `list` | No |  |
-| `origin` | `str` | No |  |
-| `phonetic` | `str` | No |  |
-| `phonetics` | `list` | No |  |
-| `word` | `str` | No |  |
+| `meanings` | `list` | No | Array of meanings for different parts of speech |
+| `origin` | `str` | No | Etymology and origin of the word |
+| `phonetic` | `str` | No | Phonetic transcription of the word |
+| `phonetics` | `list` | No | Array of phonetic representations |
+| `word` | `str` | No | The word being defined |
 
 ### Operations
 

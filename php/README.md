@@ -247,11 +247,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `meanings` |  |
-| `origin` |  |
-| `phonetic` |  |
-| `phonetics` |  |
-| `word` |  |
+| `meanings` | Array of meanings for different parts of speech |
+| `origin` | Etymology and origin of the word |
+| `phonetic` | Phonetic transcription of the word |
+| `phonetics` | Array of phonetic representations |
+| `word` | The word being defined |
 
 Operations: List.
 
@@ -276,11 +276,11 @@ Create an instance: `$entry = $client->Entry();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meanings` | `array` |  |
-| `origin` | `string` |  |
-| `phonetic` | `string` |  |
-| `phonetics` | `array` |  |
-| `word` | `string` |  |
+| `meanings` | `array` | Array of meanings for different parts of speech |
+| `origin` | `string` | Etymology and origin of the word |
+| `phonetic` | `string` | Phonetic transcription of the word |
+| `phonetics` | `array` | Array of phonetic representations |
+| `word` | `string` | The word being defined |
 
 #### Example: List
 

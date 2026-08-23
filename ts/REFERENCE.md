@@ -116,11 +116,11 @@ const entry = client.Entry()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meanings` | `any[]` | No |  |
-| `origin` | `string` | No |  |
-| `phonetic` | `string` | No |  |
-| `phonetics` | `any[]` | No |  |
-| `word` | `string` | No |  |
+| `meanings` | `any[]` | No | Array of meanings for different parts of speech |
+| `origin` | `string` | No | Etymology and origin of the word |
+| `phonetic` | `string` | No | Phonetic transcription of the word |
+| `phonetics` | `any[]` | No | Array of phonetic representations |
+| `word` | `string` | No | The word being defined |
 
 ### Operations
 

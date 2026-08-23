@@ -93,11 +93,11 @@ entry = client.Entry
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `meanings` | `Array` | No |  |
-| `origin` | `String` | No |  |
-| `phonetic` | `String` | No |  |
-| `phonetics` | `Array` | No |  |
-| `word` | `String` | No |  |
+| `meanings` | `Array` | No | Array of meanings for different parts of speech |
+| `origin` | `String` | No | Etymology and origin of the word |
+| `phonetic` | `String` | No | Phonetic transcription of the word |
+| `phonetics` | `Array` | No | Array of phonetic representations |
+| `word` | `String` | No | The word being defined |
 
 ### Operations
 

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,11 +287,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `meanings` |  |
-| `origin` |  |
-| `phonetic` |  |
-| `phonetics` |  |
-| `word` |  |
+| `meanings` | Array of meanings for different parts of speech |
+| `origin` | Etymology and origin of the word |
+| `phonetic` | Phonetic transcription of the word |
+| `phonetics` | Array of phonetic representations |
+| `word` | The word being defined |
 
 Operations: list.
 
@@ -316,11 +316,11 @@ Create an instance: `const entry = client.Entry()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meanings` | `any[]` |  |
-| `origin` | `string` |  |
-| `phonetic` | `string` |  |
-| `phonetics` | `any[]` |  |
-| `word` | `string` |  |
+| `meanings` | `any[]` | Array of meanings for different parts of speech |
+| `origin` | `string` | Etymology and origin of the word |
+| `phonetic` | `string` | Phonetic transcription of the word |
+| `phonetics` | `any[]` | Array of phonetic representations |
+| `word` | `string` | The word being defined |
 
 #### Example: List
 

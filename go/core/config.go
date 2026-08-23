@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "FreeDictionary",
+			"slug": "free-dictionary",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -33,22 +36,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "meanings",
+						"short": "Array of meanings for different parts of speech",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "origin",
+						"short": "Etymology and origin of the word",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phonetic",
+						"short": "Phonetic transcription of the word",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "phonetics",
+						"short": "Array of phonetic representations",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "word",
+						"short": "The word being defined",
 						"type": "`$STRING`",
 					},
 				},

@@ -231,11 +231,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `meanings` |  |
-| `origin` |  |
-| `phonetic` |  |
-| `phonetics` |  |
-| `word` |  |
+| `meanings` | Array of meanings for different parts of speech |
+| `origin` | Etymology and origin of the word |
+| `phonetic` | Phonetic transcription of the word |
+| `phonetics` | Array of phonetic representations |
+| `word` | The word being defined |
 
 Operations: List.
 
@@ -260,11 +260,11 @@ Create an instance: `local entry = client:Entry(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `meanings` | `table` |  |
-| `origin` | `string` |  |
-| `phonetic` | `string` |  |
-| `phonetics` | `table` |  |
-| `word` | `string` |  |
+| `meanings` | `table` | Array of meanings for different parts of speech |
+| `origin` | `string` | Etymology and origin of the word |
+| `phonetic` | `string` | Phonetic transcription of the word |
+| `phonetics` | `table` | Array of phonetic representations |
+| `word` | `string` | The word being defined |
 
 #### Example: List
 
