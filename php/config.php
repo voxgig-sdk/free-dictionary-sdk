@@ -113,10 +113,16 @@ class FreeDictionaryConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/entries/{language}/{word}',
-                  'parts' => [
-                    'entries',
-                    '{language}',
-                    '{word}',
+                  'segments' => [
+                    [
+                      'lit' => 'entries',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'var' => 'word',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -127,6 +133,11 @@ class FreeDictionaryConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'entries',
+                    '{language}',
+                    '{word}',
                   ],
                 ],
               ],

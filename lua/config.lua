@@ -87,10 +87,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/entries/{language}/{word}",
-                ["parts"] = {
-                  "entries",
-                  "{language}",
-                  "{word}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "entries",
+                  },
+                  {
+                    ["var"] = "language",
+                  },
+                  {
+                    ["var"] = "word",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -101,6 +107,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "entries",
+                  "{language}",
+                  "{word}",
                 },
               },
             },

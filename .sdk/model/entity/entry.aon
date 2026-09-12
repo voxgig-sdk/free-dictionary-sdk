@@ -65,10 +65,16 @@ main: kit: entity: entry: {
           }
           method: "GET"
           orig: "/entries/{language}/{word}"
-          parts: [
-            "entries"
-            "{language}"
-            "{word}"
+          segments: [
+            {
+              lit: "entries"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "word"
+            }
           ]
           select: {
             exist: [

@@ -98,7 +98,7 @@ func TestEntryEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		entryRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.entry", setup.data)))
+		entryRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.entry")))
 		var entryRef01Data map[string]any
 		if len(entryRef01DataRaw) > 0 {
 			entryRef01Data = core.ToMapAny(entryRef01DataRaw[0][1])
@@ -150,7 +150,7 @@ func entryBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"entry01", "entry02", "entry03", "language01", "word01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -178,10 +178,22 @@ func entryBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["FREE_DICTIONARY_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewFreeDictionarySDK(core.ToMapAny(mergedOpts))
 	}
