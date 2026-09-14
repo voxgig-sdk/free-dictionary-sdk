@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/free-dictionary",
+  "name": "@voxgig-sdk/free-dictionary-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Free Dictionary public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

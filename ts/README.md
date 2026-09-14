@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
+import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary-sdk'
 
 const client = new FreeDictionarySDK()
 ```
@@ -411,7 +411,7 @@ free-dictionary/
 Import the SDK from the package root:
 
 ```ts
-import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
+import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary-sdk'
 ```
 
 ### Entity state

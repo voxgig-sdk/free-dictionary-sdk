@@ -105,7 +105,7 @@ local results, err = client:Entry():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-dictionary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
 | Python | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
 | PHP | `voxgig-sdk/free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/free-dictionary-sdk/go` | `go get github.com/voxgig-sdk/free-dictionary-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Entry():list()
 ### TypeScript
 
 ```ts
-import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary'
+import { FreeDictionarySDK } from '@voxgig-sdk/free-dictionary-sdk'
 
 const client = new FreeDictionarySDK()
 
