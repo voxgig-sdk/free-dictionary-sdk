@@ -103,7 +103,10 @@ function FreeDictionarySDK.new(options)
 
   utility.feature_hook(self._rootctx, "PostConstruct")
 
-    -- feature: test
+    -- feature: ratelimit
+  -- feature: retry
+  -- feature: test
+  -- feature: timeout
 
 
   return self
