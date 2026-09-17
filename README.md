@@ -105,12 +105,12 @@ local results, err = client:Entry():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-dictionary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
-| Python | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
-| PHP | `voxgig-sdk/free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-dictionary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/tags) |
+| Python | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/tags) |
+| PHP | `voxgig-sdk/free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/free-dictionary-sdk/go` | `go get github.com/voxgig-sdk/free-dictionary-sdk/go@latest` |
-| Ruby | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
-| Lua | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/releases) |
+| Ruby | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/tags) |
+| Lua | `voxgig-sdk-free-dictionary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-dictionary-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/free-dictionary-sdk/go-cli` | `go install github.com/voxgig-sdk/free-dictionary-sdk/go-cli/cmd/free-dictionary@latest` |
 | Go MCP server | `github.com/voxgig-sdk/free-dictionary-sdk/go-mcp` | `go get github.com/voxgig-sdk/free-dictionary-sdk/go-mcp@latest` |
 
