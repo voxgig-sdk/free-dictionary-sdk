@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EntryEntity = void 0;
 const FreeDictionaryEntityBase_1 = require("../FreeDictionaryEntityBase");
-// TODO: needs Entity superclass
 class EntryEntity extends FreeDictionaryEntityBase_1.FreeDictionaryEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

@@ -19,7 +19,6 @@ import type {
   EntryListMatch,
 } from '../FreeDictionaryTypes'
 
-// TODO: needs Entity superclass
 class EntryEntity extends FreeDictionaryEntityBase<Entry> {
 
   constructor(client: FreeDictionarySDK, entopts: any) {

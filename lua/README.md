@@ -43,7 +43,7 @@ local entrys, err = client:Entry():list()
 if err then error(err) end
 
 for _, item in ipairs(entrys) do
-  print(item["origin"])
+  print(item)
 end
 ```
 

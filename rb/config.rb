@@ -99,28 +99,33 @@ module FreeDictionaryConfig
           "fields" => [
             {
               "name" => "meanings",
-              "short" => "Array of meanings for different parts of speech",
+              "title" => "Meanings",
               "type" => "`$ARRAY`",
+              "short" => "Array of meanings for different parts of speech",
             },
             {
               "name" => "origin",
-              "short" => "Etymology and origin of the word",
+              "title" => "Origin",
               "type" => "`$STRING`",
+              "short" => "Etymology and origin of the word",
             },
             {
               "name" => "phonetic",
-              "short" => "Phonetic transcription of the word",
+              "title" => "Phonetic",
               "type" => "`$STRING`",
+              "short" => "Phonetic transcription of the word",
             },
             {
               "name" => "phonetics",
-              "short" => "Array of phonetic representations",
+              "title" => "Phonetics",
               "type" => "`$ARRAY`",
+              "short" => "Array of phonetic representations",
             },
             {
               "name" => "word",
-              "short" => "The word being defined",
+              "title" => "Word",
               "type" => "`$STRING`",
+              "short" => "The word being defined",
             },
           ],
           "name" => "entry",
@@ -130,26 +135,6 @@ module FreeDictionaryConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "en",
-                        "kind" => "param",
-                        "name" => "language",
-                        "orig" => "language",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "hello",
-                        "kind" => "param",
-                        "name" => "word",
-                        "orig" => "word",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/entries/{language}/{word}",
@@ -164,31 +149,48 @@ module FreeDictionaryConfig
                       "var" => "word",
                     },
                   ],
+                  "parts" => [
+                    "entries",
+                    "{language}",
+                    "{word}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "language",
+                        "orig" => "language",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "en",
+                      },
+                      {
+                        "name" => "word",
+                        "orig" => "word",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "hello",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "language",
                       "word",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "entries",
-                    "{language}",
-                    "{word}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "entry",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

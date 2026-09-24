@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,28 +107,33 @@ class Config {
             "fields": [
                 {
                     "name": "meanings",
-                    "short": "Array of meanings for different parts of speech",
-                    "type": "`$ARRAY`"
+                    "title": "Meanings",
+                    "type": "`$ARRAY`",
+                    "short": "Array of meanings for different parts of speech"
                 },
                 {
                     "name": "origin",
-                    "short": "Etymology and origin of the word",
-                    "type": "`$STRING`"
+                    "title": "Origin",
+                    "type": "`$STRING`",
+                    "short": "Etymology and origin of the word"
                 },
                 {
                     "name": "phonetic",
-                    "short": "Phonetic transcription of the word",
-                    "type": "`$STRING`"
+                    "title": "Phonetic",
+                    "type": "`$STRING`",
+                    "short": "Phonetic transcription of the word"
                 },
                 {
                     "name": "phonetics",
-                    "short": "Array of phonetic representations",
-                    "type": "`$ARRAY`"
+                    "title": "Phonetics",
+                    "type": "`$ARRAY`",
+                    "short": "Array of phonetic representations"
                 },
                 {
                     "name": "word",
-                    "short": "The word being defined",
-                    "type": "`$STRING`"
+                    "title": "Word",
+                    "type": "`$STRING`",
+                    "short": "The word being defined"
                 }
             ],
             "name": "entry",
@@ -145,26 +143,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "en",
-                                        "kind": "param",
-                                        "name": "language",
-                                        "orig": "language",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "hello",
-                                        "kind": "param",
-                                        "name": "word",
-                                        "orig": "word",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/entries/{language}/{word}",
@@ -179,31 +157,48 @@ class Config {
                                     "var": "word"
                                 }
                             ],
+                            "parts": [
+                                "entries",
+                                "{language}",
+                                "{word}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "en"
+                                    },
+                                    {
+                                        "name": "word",
+                                        "orig": "word",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "hello"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "language",
                                     "word"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "entries",
-                                "{language}",
-                                "{word}"
-                            ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "entry"
-                    ]
-                ]
+                "ancestors": []
             }
         }
     };

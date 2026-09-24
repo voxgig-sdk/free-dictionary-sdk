@@ -1,0 +1,106 @@
+# Entity: entry
+
+main: kit: entity: entry: {
+
+  alias: field: {}
+
+  fields: {
+    meanings: {
+      h: "Meanings"
+      n: "meanings"
+      r: false
+      sh: "Array of meanings for different parts of speech"
+      t: "`$ARRAY`"
+    }
+    origin: {
+      h: "Origin"
+      n: "origin"
+      r: false
+      sh: "Etymology and origin of the word"
+      t: "`$STRING`"
+    }
+    phonetic: {
+      h: "Phonetic"
+      n: "phonetic"
+      r: false
+      sh: "Phonetic transcription of the word"
+      t: "`$STRING`"
+    }
+    phonetics: {
+      h: "Phonetics"
+      n: "phonetics"
+      r: false
+      sh: "Array of phonetic representations"
+      t: "`$ARRAY`"
+    }
+    word: {
+      h: "Word"
+      n: "word"
+      r: false
+      sh: "The word being defined"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "entry"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /entries/{language}/{word}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "en"
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "hello"
+                k: "param"
+                n: "word"
+                or: "word"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/entries/{language}/{word}"
+          q: {
+            exist: [
+              "language"
+              "word"
+            ]
+          }
+          s: [
+            {
+              lit: "entries"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "word"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

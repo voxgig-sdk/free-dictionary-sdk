@@ -91,28 +91,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "meanings",
-						"short": "Array of meanings for different parts of speech",
+						"title": "Meanings",
 						"type": "`$ARRAY`",
+						"short": "Array of meanings for different parts of speech",
 					},
 					map[string]any{
 						"name": "origin",
-						"short": "Etymology and origin of the word",
+						"title": "Origin",
 						"type": "`$STRING`",
+						"short": "Etymology and origin of the word",
 					},
 					map[string]any{
 						"name": "phonetic",
-						"short": "Phonetic transcription of the word",
+						"title": "Phonetic",
 						"type": "`$STRING`",
+						"short": "Phonetic transcription of the word",
 					},
 					map[string]any{
 						"name": "phonetics",
-						"short": "Array of phonetic representations",
+						"title": "Phonetics",
 						"type": "`$ARRAY`",
+						"short": "Array of phonetic representations",
 					},
 					map[string]any{
 						"name": "word",
-						"short": "The word being defined",
+						"title": "Word",
 						"type": "`$STRING`",
+						"short": "The word being defined",
 					},
 				},
 				"name": "entry",
@@ -122,26 +127,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "en",
-											"kind": "param",
-											"name": "language",
-											"orig": "language",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "hello",
-											"kind": "param",
-											"name": "word",
-											"orig": "word",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/entries/{language}/{word}",
@@ -156,31 +141,48 @@ func MakeConfig() map[string]any {
 										"var": "word",
 									},
 								},
+								"parts": []any{
+									"entries",
+									"{language}",
+									"{word}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "en",
+										},
+										map[string]any{
+											"name": "word",
+											"orig": "word",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "hello",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"language",
 										"word",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"entries",
-									"{language}",
-									"{word}",
-								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"entry",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},
