@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 FreeDictionaryUtility::setRegistrar(function (FreeDictionaryUtility $u): void {
     $u->clean = [FreeDictionaryClean::class, 'call'];
+    $u->clean_add = [FreeDictionaryClean::class, 'add'];
+    $u->clean_explain = [FreeDictionaryDone::class, 'clean_explain'];
     $u->done = [FreeDictionaryDone::class, 'call'];
     $u->make_error = [FreeDictionaryMakeError::class, 'call'];
     $u->feature_add = [FreeDictionaryFeatureAdd::class, 'call'];

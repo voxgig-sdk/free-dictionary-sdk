@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 FreeDictionaryUtility.registrar = ->(u) {
   u.clean = FreeDictionaryUtilities::Clean
+  u.clean_add = FreeDictionaryUtilities::CleanAdd
+  u.clean_explain = FreeDictionaryUtilities::CleanExplain
   u.done = FreeDictionaryUtilities::Done
   u.make_error = FreeDictionaryUtilities::MakeError
   u.feature_add = FreeDictionaryUtilities::FeatureAdd
