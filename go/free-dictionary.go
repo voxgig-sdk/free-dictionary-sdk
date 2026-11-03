@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type FreeDictionaryEntity = core.FreeDictionaryEntity
+type FreeDictionaryEntityBase = core.FreeDictionaryEntityBase
+
+// Deprecated: use FreeDictionaryEntityBase.
+type FreeDictionaryEntity = core.FreeDictionaryEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,7 +46,7 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewEntryEntityFunc = func(client *core.FreeDictionarySDK, entopts map[string]any) core.FreeDictionaryEntity {
+	core.NewEntryEntityFunc = func(client *core.FreeDictionarySDK, entopts map[string]any) core.FreeDictionaryEntityBase {
 		return entity.NewEntryEntity(client, entopts)
 	}
 }

@@ -81,6 +81,10 @@ main: kit: entity: entry: {
               "word"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "entries"

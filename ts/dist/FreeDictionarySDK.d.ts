@@ -7,6 +7,19 @@ import { FreeDictionaryEntityBase } from './FreeDictionaryEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class FreeDictionarySDK {
     _mode: string;
     _options: any;
@@ -17,32 +30,8 @@ declare class FreeDictionarySDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Entry(entopts?: Record<string, any>): EntryEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): FreeDictionarySDK;
@@ -55,3 +44,4 @@ declare class FreeDictionarySDK {
 }
 declare const SDK: typeof FreeDictionarySDK;
 export { stdutil, config, BaseFeature, FreeDictionaryEntityBase, FreeDictionarySDK, SDK, };
+export type { DirectResult };

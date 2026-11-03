@@ -75,7 +75,7 @@ func runOp(client *sdk.FreeDictionarySDK, op string, query *eng.Value, entityAto
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.FreeDictionarySDK, name string) (sdk.FreeDictionaryEntity, error) {
+func entityFor(client *sdk.FreeDictionarySDK, name string) (sdk.FreeDictionaryEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "entry":
 		return client.Entry(nil), nil

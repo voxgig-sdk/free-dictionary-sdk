@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/free-dictionary-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/free-dictionary-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = FreeDictionarySDK.new
 
 ```ruby
 begin
-  # list returns an Array of Entry records — iterate directly.
-  entrys = client.Entry.list
+  # list returns an Array of Entry entities, one per record; data_get reads the record.
+  entrys = client.Entry.list({ "language" => "example", "word" => "example" })
   entrys.each do |item|
-    puts "#{item["meanings"]}"
+    record = item.data_get
+    puts "#{record["meanings"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  entrys = client.Entry.list()
+  entrys = client.Entry.list({ "language" => "example", "word" => "example" })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeDictionarySDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-entry = client.Entry.list()
-puts entry
+# list returns an Array of Entry entities, one per mock record (raises on
+# error); data_get reads each record.
+entrys = client.Entry.list({ "language" => "example", "word" => "example" })
+entrys.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `FreeDictionaryError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`FreeDictionaryError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -284,8 +286,9 @@ Create an instance: `entry = client.Entry`
 #### Example: List
 
 ```ruby
-# list returns an Array of Entry records (raises on error).
-entrys = client.Entry.list
+# list returns an Array of Entry entities, one per record (raises on error).
+entrys = client.Entry.list({ "language" => "example", "word" => "example" })
+entrys.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -451,7 +454,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 entry = client.Entry
-entry.list()
+entry.list({ "language" => "example", "word" => "example" })
 
 # entry.data_get now returns the entry data from the last list
 # entry.match_get returns the last match criteria

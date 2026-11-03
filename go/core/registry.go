@@ -12,5 +12,5 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewEntryEntityFunc func(client *FreeDictionarySDK, entopts map[string]any) FreeDictionaryEntity
+var NewEntryEntityFunc func(client *FreeDictionarySDK, entopts map[string]any) FreeDictionaryEntityBase
 

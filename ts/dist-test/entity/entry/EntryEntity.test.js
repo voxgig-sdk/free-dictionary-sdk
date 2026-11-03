@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Entry();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.FreeDictionarySDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Entry().list({ "language": 1, "word": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.FREE_DICTIONARY_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "meanings": { "a": true, "h": "Meanings", "n": "meanings", "r": false, "sh": "Array of meanings for different parts of speech", "t": "`$ARRAY`", "key$": "meanings", "index$": 0 }, "origin": { "a": true, "h": "Origin", "n": "origin", "r": false, "sh": "Etymology and origin of the word", "t": "`$STRING`", "key$": "origin", "index$": 1 }, "phonetic": { "a": true, "h": "Phonetic", "n": "phonetic", "r": false, "sh": "Phonetic transcription of the word", "t": "`$STRING`", "key$": "phonetic", "index$": 2 }, "phonetics": { "a": true, "h": "Phonetics", "n": "phonetics", "r": false, "sh": "Array of phonetic representations", "t": "`$ARRAY`", "key$": "phonetics", "index$": 3 }, "word": { "a": true, "h": "Word", "n": "word", "r": false, "sh": "The word being defined", "t": "`$STRING`", "key$": "word", "index$": 4 } }, "name": "entry", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /entries/{language}/{word}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "hello", "k": "param", "n": "word", "or": "word", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/entries/{language}/{word}", "q": { "exist": ["language", "word"] }, "r": {}, "s": [{ "lit": "entries" }, { "var": "language" }, { "var": "word" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "entry", "name__orig": "entry", "Name": "Entry", "name_": "entry", "name-": "entry", "NAME": "ENTRY", "index$": 0 }, { "active": true, "entity": "entry", "key$": "BasicEntryFlow", "kind": "basic", "name": "BasicEntryFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "language": "language01", "word": "word01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "entry_ref01" } }], "index$": 0 }] }, 'Entry', { "GET /entries/{language}/{word}": { "protocol": "http", "parameters": [{ "name": "language", "in": "path", "description": "Language code (e.g., 'en' for English)", "required": true, "schema": { "type": "string", "example": "en" }, "index$": 0 }, { "name": "word", "in": "path", "description": "The word to look up", "required": true, "schema": { "type": "string", "example": "hello" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "meanings": { "a": true, "h": "Meanings", "n": "meanings", "r": false, "sh": "Array of meanings for different parts of speech", "t": "`$ARRAY`", "key$": "meanings", "index$": 0 }, "origin": { "a": true, "h": "Origin", "n": "origin", "r": false, "sh": "Etymology and origin of the word", "t": "`$STRING`", "key$": "origin", "index$": 1 }, "phonetic": { "a": true, "h": "Phonetic", "n": "phonetic", "r": false, "sh": "Phonetic transcription of the word", "t": "`$STRING`", "key$": "phonetic", "index$": 2 }, "phonetics": { "a": true, "h": "Phonetics", "n": "phonetics", "r": false, "sh": "Array of phonetic representations", "t": "`$ARRAY`", "key$": "phonetics", "index$": 3 }, "word": { "a": true, "h": "Word", "n": "word", "r": false, "sh": "The word being defined", "t": "`$STRING`", "key$": "word", "index$": 4 } }, "name": "entry", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /entries/{language}/{word}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "hello", "k": "param", "n": "word", "or": "word", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/entries/{language}/{word}", "q": { "exist": ["language", "word"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "entries" }, { "var": "language" }, { "var": "word" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "entry", "name__orig": "entry", "Name": "Entry", "name_": "entry", "name-": "entry", "NAME": "ENTRY", "index$": 0 }, { "active": true, "entity": "entry", "key$": "BasicEntryFlow", "kind": "basic", "name": "BasicEntryFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "language": "language01", "word": "word01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "entry_ref01" } }], "index$": 0 }] }, 'Entry', { "GET /entries/{language}/{word}": { "protocol": "http", "parameters": [{ "name": "language", "in": "path", "description": "Language code (e.g., 'en' for English)", "required": true, "schema": { "type": "string", "example": "en" }, "index$": 0 }, { "name": "word", "in": "path", "description": "The word to look up", "required": true, "schema": { "type": "string", "example": "hello" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -77,6 +85,11 @@ const utility_1 = require("../../utility");
         const entry_ref01_list = (await entry_ref01_ent.list(entry_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

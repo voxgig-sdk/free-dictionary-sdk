@@ -3,5 +3,17 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Array of meanings for different parts of speech",
+      "Array of phonetic representations",
+      "Etymology and origin of the word",
+      "Phonetic transcription of the word",
+      "Production server",
+      "Successful response with word definitions",
+      "The word being defined",
+      "This API allows users to access word definitions, phonetics, and usage examples by sending a request with a specific English word. It serves as a resource for developers building applications that require linguistic data, enhancing learning and communication tools."
+    ]
+  }
 }

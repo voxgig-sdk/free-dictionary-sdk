@@ -6,46 +6,28 @@ require_relative "../FreeDictionary_sdk"
 require_relative "runner"
 
 class EntryEntityTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
   def test_create_instance
     testsdk = FreeDictionarySDK.test(nil, nil)
     ent = testsdk.Entry(nil)
     assert !ent.nil?
   end
 
-  # Feature #4: the entity stream(action, ...) method runs the op pipeline and
-  # returns an Enumerator over result items. With the streaming feature active
-  # it yields the feature's incremental output; otherwise it falls back to the
-  # materialised list so stream always yields.
-  def test_stream
-    seed = {
-      "entity" => {
-        "entry" => {
-          "s1" => { "id" => "s1" },
-          "s2" => { "id" => "s2" },
-          "s3" => { "id" => "s3" },
-        },
-      },
-    }
-
-    # Fallback: streaming inactive -> yields the materialised list items.
-    base = FreeDictionarySDK.test(seed, nil)
-    seen = base.Entry(nil).stream("list", nil, nil).to_a
-    assert_equal 3, seen.length
-
-    # Inbound: streaming active -> yields each item from the feature.
+  def test_validate
     cfg = FreeDictionaryConfig.shared_config
-    if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
-      sdk = FreeDictionarySDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
-      got = []
-      sdk.Entry(nil).stream("list", nil, nil).each do |item|
-        if item.is_a?(Array)
-          got.concat(item)
-        else
-          got << item
-        end
-      end
-      assert_equal 3, got.length
+    unless cfg["feature"].is_a?(Hash) && cfg["feature"].key?("validate")
+      skip("feature not present in this SDK: validate")
     end
+    client = FreeDictionarySDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
+    err = assert_raises(StandardError) do
+      client.Entry(nil).list({ "language" => 1, "word" => "x" }, nil)
+    end
+    assert_equal "validate_failed", err.code
   end
 
   def test_basic_flow
@@ -59,11 +41,12 @@ class EntryEntityTest < Minitest::Test
         return
       end
     end
-    # The basic flow consumes synthetic IDs from the fixture. In live mode
-    # without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set FREE_DICTIONARY_TEST_ENTRY_ENTID JSON to run live"
-      return
+    if setup[:live]
+      { "language01" => "en", "word01" => "hello" }.each do |_live_key, _live_ex|
+        if setup[:synthetic_only] || setup[:idmap][_live_key].nil?
+          setup[:idmap][_live_key] = _live_ex
+        end
+      end
     end
     client = setup[:client]
 
@@ -92,7 +75,7 @@ def entry_basic_setup(extra)
   Runner.load_env_local
 
   entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "entry", "EntryTestData.json")
-  entity_data_source = File.read(entity_data_file)
+  entity_data_source = File.read(entity_data_file, encoding: "UTF-8")
   entity_data = JSON.parse(entity_data_source)
 
   options = {}
@@ -111,9 +94,8 @@ def entry_basic_setup(extra)
     }
   )
 
-  # Detect ENTID env override before envOverride consumes it. When live
-  # mode is on without a real override, the basic test runs against synthetic
-  # IDs from the fixture and 4xx's. Surface this so the test can skip.
+  # Whether *_ENTID supplied the idmap, read before env_override consumes
+  # it: without it, the ids a live flow binds are the fixture's synthetic ones.
   entid_env_raw = ENV["FREE_DICTIONARY_TEST_ENTRY_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 

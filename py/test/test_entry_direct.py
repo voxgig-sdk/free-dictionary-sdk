@@ -1,12 +1,25 @@
 # Entry direct test
 
 import json
+import os
 import pytest
 
 from freedictionary_sdk.utility.voxgig_struct import voxgig_struct as vs
 from freedictionary_sdk import FreeDictionarySDK
 from freedictionary_sdk.core import helpers
 from test import runner
+
+
+# main.kit.test.live.strict is true (the default is true): a live
+# request that fails, or a live test missing an input it needs,
+# fails the test.
+# An account with no record for a test to read skips it either way.
+LIVE_STRICT = True
+
+
+def _live_ok(result):
+    status = helpers.to_int(result.get("status"))
+    return result.get("err") is None and bool(result.get("ok")) and 200 <= status < 300
 
 
 class TestEntryDirect:
@@ -18,47 +31,37 @@ class TestEntryDirect:
         ])
         _skip, _reason = runner.is_control_skipped("direct", "direct-list-entry", "live" if setup["live"] else "unit")
         if _skip:
-            # pytest already imported at module scope
             pytest.skip(_reason or "skipped via sdk-test-control.json")
             return
         if setup["live"]:
             for _live_key in ["language01", "word01"]:
                 if setup["idmap"].get(_live_key) is None:
-                    # pytest already imported at module scope
-                    pytest.skip(f"live test needs {_live_key} via *_ENTID env var (synthetic IDs only)")
-                    return
+                    runner.live_miss(LIVE_STRICT, f"Live test blocked: needs {_live_key} via FREE_DICTIONARY_TEST_ENTRY_ENTID")
 
         client = setup["client"]
 
         params = {}
+        query = {}
         if setup["live"]:
-            params["language"] = setup["idmap"]["language01"]
+            params["language"] = setup["idmap"].get("language01")
         else:
             params["language"] = "direct01"
         if setup["live"]:
-            params["word"] = setup["idmap"]["word01"]
+            params["word"] = setup["idmap"].get("word01")
         else:
-            params["word"] = "direct01"
+            params["word"] = "direct02"
 
         result = client.direct({
             "path": "entries/{language}/{word}",
             "method": "GET",
             "params": params,
+            "query": query,
         })
         if setup["live"]:
-            # Live mode is lenient: synthetic IDs frequently 4xx and the
-            # list-response shape varies wildly across public APIs. Skip
-            # rather than fail when the call doesn't return a usable list.
-            if result.get("err") is not None:
-                pytest.skip(f"list call failed (likely synthetic IDs against live API): {result.get('err')}")
-                return
-            if not result.get("ok"):
-                pytest.skip("list call not ok (likely synthetic IDs against live API)")
-                return
-            status = helpers.to_int(result["status"])
-            if status < 200 or status >= 300:
-                pytest.skip(f"expected 2xx status, got {status}")
-                return
+            if not _live_ok(result):
+                runner.live_miss(LIVE_STRICT, "Live list failed: " + runner.live_describe(result))
+            if runner.live_list(result.get("data")) is None:
+                runner.live_miss(LIVE_STRICT, "Live list returned no list: " + runner.live_describe(result))
         else:
             assert result["ok"] is True
             assert helpers.to_int(result["status"]) == 200
@@ -87,11 +90,15 @@ def _entry_direct_setup(mockres):
         merged_opts.update({
         })
         client = FreeDictionarySDK(merged_opts)
+        idmap = env.get("FREE_DICTIONARY_TEST_ENTRY_ENTID")
+        # A path parameter's example stands in for an id *_ENTID does not give.
+        idmap = {"language01": "en", "word01": "hello",
+                 **(idmap if isinstance(idmap, dict) else {})}
         return {
             "client": client,
             "calls": calls,
             "live": True,
-            "idmap": {},
+            "idmap": idmap if isinstance(idmap, dict) else {},
         }
 
     def mock_fetch(url, init):
